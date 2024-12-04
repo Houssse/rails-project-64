@@ -64,12 +64,8 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      - name: Wait for PostgreSQL to be ready
-        run: |
-          until pg_isready -h localhost -p 5432 -U pguser; do
-            echo "Waiting for PostgreSQL to be ready..."
-            sleep 2
-          done
+      - name: Set CI environment for SQLite
+        run: echo "RAILS_ENV=ci" >> $GITHUB_ENV
 
       - name: Set up database
         run: |
