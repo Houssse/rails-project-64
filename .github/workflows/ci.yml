@@ -68,7 +68,7 @@ jobs:
         run: |
           until pg_isready -h localhost -U pguser; do
             echo "Waiting for PostgreSQL..."
-            sleep 2
+            sleep 5
           done
 
       - name: Set up database
