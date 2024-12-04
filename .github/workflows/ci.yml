@@ -64,9 +64,6 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      - name: Set CI environment for SQLite
-        run: echo "RAILS_ENV=ci" >> $GITHUB_ENV
-
       - name: Wait for PostgreSQL to be ready
         run: |
           until pg_isready -h localhost -U pguser; do
