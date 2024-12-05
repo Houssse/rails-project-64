@@ -11,10 +11,11 @@ development:
 
 test:
   <<: *default
-  pool: 10
   database: hexlet_app2_test
   username: <%= ENV['DB_USERNAME'] || 'pguser' %>
   password: <%= ENV['DB_PASSWORD'] || 'pgpassword' %>
+  host: <%= ENV['DB_HOST'] || 'localhost' unless ENV['GITHUB_ACTIONS'].nil? %>
+  port: <%= ENV['DB_PORT'] || 5432 unless ENV['GITHUB_ACTIONS'].nil? %>
 
 production:
   <<: *default

@@ -42,12 +42,25 @@ jobs:
           gem install bundler
           bundle install
 
-      - name: Wait for Postgres to be ready
+      - name: Test database connection
         run: |
-          until pg_isready -h localhost -p 5432 -U pguser; do
-            echo "Waiting for Postgres...";
-            sleep 1;
-          done
+          pg_isready -h $DB_HOST -p $DB_PORT -U $DB_USERNAME
+        env:
+          DB_HOST: localhost
+          DB_PORT: 5432
+          DB_USERNAME: pguser
+          DB_PASSWORD: pgpassword
+
+      - name: Ensure database exists
+        run: |
+          PGPASSWORD=$DB_PASSWORD psql -h $DB_HOST -p $DB_PORT -U postgres -c "CREATE DATABASE hexlet_app2_test;"
+          PGPASSWORD=$DB_PASSWORD psql -h $DB_HOST -p $DB_PORT -U postgres -c "CREATE USER pguser WITH PASSWORD 'pgpassword';"
+          PGPASSWORD=$DB_PASSWORD psql -h $DB_HOST -p $DB_PORT -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE hexlet_app2_test TO pguser;"
+        env:
+          DB_HOST: localhost
+          DB_PORT: 5432
+          DB_USERNAME: postgres
+          DB_PASSWORD: pgpassword
 
       - name: Prepare test database
         run: make prepare_test_db
