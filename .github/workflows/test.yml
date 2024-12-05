@@ -15,15 +15,17 @@ jobs:
     services:
       postgres:
         image: postgres:15
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U pguser -h localhost"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
         env:
           POSTGRES_USER: pguser
           POSTGRES_PASSWORD: pgpassword
           POSTGRES_DB: hexlet_app2_test
-        options: >-
-          --health-cmd="pg_isready -U pguser"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=5
 
     steps:
       - name: Checkout code
@@ -51,6 +53,8 @@ jobs:
         run: make prepare_test_db
         env:
           RAILS_ENV: test
+          DB_HOST: localhost
+          DB_PORT: 5432
           DB_USERNAME: pguser
           DB_PASSWORD: pgpassword
 
@@ -58,5 +62,7 @@ jobs:
         run: make test
         env:
           RAILS_ENV: test
+          DB_HOST: localhost
+          DB_PORT: 5432
           DB_USERNAME: pguser
           DB_PASSWORD: pgpassword
