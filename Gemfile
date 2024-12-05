@@ -39,6 +39,7 @@ gem "bootsnap", require: false
 gem "slim-rails"
 gem "simple_form"
 gem "devise", "~> 4.9"
+gem "faker"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -52,7 +53,6 @@ group :development, :test do
 
   gem "rubocop-rails", require: false
   gem "slim_lint", require: false
-  gem "faker"
 end
 
 group :development do
