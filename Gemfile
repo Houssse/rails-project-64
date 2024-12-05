@@ -52,6 +52,7 @@ group :development, :test do
 
   gem "rubocop-rails", require: false
   gem "slim_lint", require: false
+  gem "faker"
 end
 
 group :development do

@@ -12,6 +12,19 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: pguser
+          POSTGRES_PASSWORD: pgpassword
+          POSTGRES_DB: hexlet_app2_test
+        options: >-
+          --health-cmd="pg_isready -U pguser"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -27,8 +40,23 @@ jobs:
           gem install bundler
           bundle install
 
+      - name: Wait for Postgres to be ready
+        run: |
+          until pg_isready -h localhost -p 5432 -U pguser; do
+            echo "Waiting for Postgres...";
+            sleep 1;
+          done
+
       - name: Prepare test database
         run: make prepare_test_db
+        env:
+          RAILS_ENV: test
+          DB_USERNAME: pguser
+          DB_PASSWORD: pgpassword
 
       - name: Run tests
         run: make test
+        env:
+          RAILS_ENV: test
+          DB_USERNAME: pguser
+          DB_PASSWORD: pgpassword

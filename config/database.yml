@@ -11,9 +11,10 @@ development:
 
 test:
   <<: *default
+  pool: 10
   database: hexlet_app2_test
-  username: pguser
-  password: pgpassword
+  username: <%= ENV['DB_USERNAME'] || 'pguser' %>
+  password: <%= ENV['DB_PASSWORD'] || 'pgpassword' %>
 
 production:
   <<: *default

@@ -1,0 +1,20 @@
+ol.breadcrumb
+  li.breadcrumb-item
+    a = link_to "Все посты", root_path
+  li.breadcrumb-item.active
+    = @post.category.name
+.row.justify-content-center.mt-4
+  article.col-12
+    h1.mb-4.mb-lg-5
+      = @post.title
+    p
+    p
+      = @post.body
+    p
+    .d-flex.justify-content-between.mt-5
+      post-section
+        span.me-2
+          = @post.creator.email
+      likes-section
+        span.me-2 0
+        i.bi.bi-hand-thumbs-up

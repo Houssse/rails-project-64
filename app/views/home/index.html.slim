@@ -1,2 +1,13 @@
-h1 Home#index
-p Find me in app/views/home/index.html.slim
+h1 Коллективный блог
+.row
+  .col-md-12
+    - @posts.each do |post|
+      .card.mb-3
+        .card-body
+          h2.h5.card-title
+            = link_to post.title, post,
+              class: "link-dark text-decoration-none"
+          .card-text.mb-2
+            = post.body.truncate(300)
+          .text-right.small.text-muted.mt-auto
+            = post.creator.email
