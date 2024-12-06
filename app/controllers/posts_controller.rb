@@ -1,6 +1,11 @@
 class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
+    if current_user
+      @like = current_user.post_likes.find_by(post_id: @post.id)
+    else
+      @like = nil
+    end
   end
 
   def new

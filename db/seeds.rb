@@ -8,6 +8,7 @@ puts "Заполнение базы данных..."
   user = User.create!(email: Faker::Internet.email, password: 'password')
   category = Category.create!(name: Faker::Commerce.department(max: 1))
   post = Post.create!(title: Faker::Lorem.sentence, body: Faker::Lorem.sentence(word_count: 250), creator: user, category: category)
+  rand(1..10).times { PostLike.create(post: post, user: User.all.sample) }
 
   2.times do
     root_comment = PostComment.create(content: Faker::Lorem.sentence, post: post, user: user)

@@ -1,0 +1,8 @@
+- if current_user && @like
+  = link_to post_like_path(@post, @like),
+    data: { turbo_method: :delete }, class: "btn" do
+      i.bi.bi-hand-thumbs-up-fill
+- else
+  = link_to post_likes_path(@post),
+    data: { turbo_method: :post }, class: "btn" do
+      i.bi.bi-hand-thumbs-up

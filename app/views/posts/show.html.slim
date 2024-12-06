@@ -16,8 +16,8 @@ ol.breadcrumb
         span.me-2
           = @post.creator.email
       likes-section
-        span.me-2 0
-        i.bi.bi-hand-thumbs-up
+          span.me-2 = @post.post_likes.count
+          = render "likes/like", post: @post, like: @like
 
 .div.lead.mt-3 id="comment-section"
   span Комментарии
