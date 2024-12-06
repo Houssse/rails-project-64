@@ -1,0 +1,27 @@
+.card
+  .card-body
+    .media
+      .media-body
+        div class="card-header border-0"
+          a href="" class="me-2" #
+          span class="me-2" = comment.user.email
+          span class="fs-6 text-muted" = \
+            comment.created_at.strftime("%d %b., %H:%M")
+
+        div class="card-body border-0"
+          p class="card-text" = comment.content
+
+        = link_to "Ответить", "#reply-form-#{comment.id}",
+          class: "btn btn-sm btn-link", data: { bs_toggle: "collapse" }
+
+        div id="reply-form-#{comment.id}" class="collapse mt-2"
+          = render "comments/form", parent_id: comment.id
+
+        - if comment.children.any?
+          .card-footer.bg-light
+            h6 Ответы
+            - comment.children.each do |child|
+              .card.mb-3
+                .card-body
+                  = render partial: "comments/comment",
+                    locals: { comment: child }

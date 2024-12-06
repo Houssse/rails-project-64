@@ -7,7 +7,12 @@ puts "Заполнение базы данных..."
 5.times do
   user = User.create!(email: Faker::Internet.email, password: 'password')
   category = Category.create!(name: Faker::Commerce.department(max: 1))
-  Post.create!(title: Faker::Lorem.sentence, body: Faker::Lorem.sentence(word_count: 250), creator: user, category: category)
+  post = Post.create!(title: Faker::Lorem.sentence, body: Faker::Lorem.sentence(word_count: 250), creator: user, category: category)
+
+  2.times do
+    root_comment = PostComment.create(content: Faker::Lorem.sentence, post: post, user: user)
+    PostComment.create(content: Faker::Lorem.sentence, post: post, user: user, parent: root_comment)
+  end
 end
 
 puts "Готово"

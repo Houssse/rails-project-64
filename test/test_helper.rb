@@ -4,6 +4,16 @@ require "rails/test_help"
 
 module ActiveSupport
   class TestCase
+    include Devise::Test::IntegrationHelpers
+
+    def setup
+      user = users(:one)
+      sign_in user
+      @category = categories(:one)
+      @post = posts(:one)
+      @comment_root = post_comments(:one)
+      @comment_child = post_comments(:two)
+    end
     # Run tests in parallel with specified workers
     parallelize(workers: :number_of_processors)
 

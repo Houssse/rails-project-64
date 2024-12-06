@@ -1,0 +1,9 @@
+= form_with model: PostComment.new,
+  url: post_comments_path(@post), local: true do |f|
+  .form-group
+    = f.text_area :content, rows: 3,
+      class: "form-control", placeholder: "Напишите ваш комментарий"
+
+  = f.hidden_field :parent_id, value: parent_id if defined?(parent_id)
+
+  = f.submit "Отправить", class: "btn btn-primary mt-2"

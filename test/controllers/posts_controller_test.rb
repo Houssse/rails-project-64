@@ -1,15 +1,6 @@
 require "test_helper"
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
-  include Devise::Test::IntegrationHelpers
-
-  def setup
-    user = users(:one)
-    sign_in user
-    @category = categories(:one)
-    @post = posts(:one)
-  end
-
   test "should get new" do
     get new_post_url
 
