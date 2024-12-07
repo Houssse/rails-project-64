@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, only: [ :create, :new]
+
   def show
     @post = Post.find(params[:id])
     if current_user
@@ -15,11 +17,13 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @categories = Category.all
 
     if @post.save
       redirect_to post_path(@post)
     else
-      render :new
+      flash[:alert] = "Не удалось создать пост. Проверьте введенные данные"
+      render :new, status: :unprocessable_entity
     end
   end
 

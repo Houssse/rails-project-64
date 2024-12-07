@@ -17,13 +17,7 @@ html
     = javascript_include_tag "application",
                              "data-turbo-track": "reload", type: "module"
 body.d-flex.flex-column.h-100
-  = render "shard/nav"
-    - if flash[:alert]
-    .alert.alert-danger
-      = flash[:alert]
-
-    - if flash[:notice]
-    .alert.alert-success
-      = flash[:notice]
+  = render "shared/nav"
   .container.my-4
+    = render "shared/alert"
     = yield

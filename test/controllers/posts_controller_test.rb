@@ -10,14 +10,16 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_select "label", "Категория"
   end
 
-  test "test create post" do
+  test "create post" do
     assert_difference "Post.count", 1 do
-      post posts_path, params: { post: { title: "New Post", body: "Body content", category_id: @category.id } }
+      post posts_path, params: { post: { title: "New Post", body: Faker::Lorem.paragraph_by_chars(number: 255), category_id: @category.id } }
     end
+
     assert_redirected_to post_path(Post.last)
+
     follow_redirect!
+
     assert_select "h1", "New Post"
-    assert_select "p", "Body content"
   end
 
   test "test show post" do

@@ -1,0 +1,12 @@
+ru:
+  simple_form:
+    error_notification:
+      default_message: "Пожалуйста, проверьте следующие ошибки:"
+    required:
+      text: 'обязательное'
+      mark: '*'
+    hints:
+      post:
+        title: 'Введите заголовок для вашего поста.'
+        category_id: 'Выберите категорию из списка.'
+        body: 'Описание вашего поста.'

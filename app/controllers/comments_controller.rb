@@ -9,7 +9,8 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to post_path(@post)
     else
-      render "posts/show"
+      flash[:alert] = @comment.errors.full_messages.last
+      render "posts/show", status: :unprocessable_entity
     end
   end
 
