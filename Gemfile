@@ -39,6 +39,7 @@ gem "bootsnap", require: false
 gem "slim-rails"
 gem "simple_form"
 gem "devise", "~> 4.9"
+gem "devise-i18n"
 gem "faker"
 gem "ancestry"
 
