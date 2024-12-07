@@ -22,7 +22,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_select "h1", "New Post"
   end
 
-  test "test show post" do
+  test "show post" do
     get post_url(@post)
 
     assert_response :success

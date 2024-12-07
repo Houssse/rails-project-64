@@ -1,7 +1,12 @@
 require "test_helper"
 
 class PostCommentTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "valid comment" do
+    assert @comment.valid?
+  end
+
+  test "invalid comment" do
+    @comment.content = ""
+    assert_not @comment.valid?
+  end
 end

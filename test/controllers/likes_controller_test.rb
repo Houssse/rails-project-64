@@ -1,7 +1,7 @@
 require "test_helper"
 
 class LikesControllerTest < ActionDispatch::IntegrationTest
-  test "create like" do
+  test "сreate like" do
     post post_likes_path(@post)
 
     assert_equal 1, @post.post_likes.count

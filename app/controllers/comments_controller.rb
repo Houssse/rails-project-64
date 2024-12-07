@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
+      flash[:notice] = "Комментарий опубликован"
       redirect_to post_path(@post)
     else
       flash[:alert] = @comment.errors.full_messages.last

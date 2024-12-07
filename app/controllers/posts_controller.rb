@@ -20,6 +20,7 @@ class PostsController < ApplicationController
     @categories = Category.all
 
     if @post.save
+      flash[:notice] = "Пост опубликован"
       redirect_to post_path(@post)
     else
       flash[:alert] = "Не удалось создать пост. Проверьте введенные данные"

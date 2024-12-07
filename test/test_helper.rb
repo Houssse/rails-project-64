@@ -11,6 +11,7 @@ module ActiveSupport
       sign_in user
       @category = categories(:one)
       @post = posts(:one)
+      @comment = PostComment.new(content: "This is a valid comment", user: users(:one), post: posts(:one))
       @comment_root = post_comments(:one)
       @comment_child = post_comments(:two)
       @like = post_likes(:one)

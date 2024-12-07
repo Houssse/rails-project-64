@@ -1,7 +1,7 @@
 require "test_helper"
 
 class CommentsControllerTest < ActionDispatch::IntegrationTest
-  test "test create root comment" do
+  test "create root comment" do
     assert_difference "PostComment.count", 1 do
       post post_comments_path(@post), params: { post_comment: { content: "Comment body", parent: nil } }
     end
@@ -11,7 +11,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_select "p", "Comment body"
   end
 
-  test "test create child comment" do
+  test "create child comment" do
     assert_difference "PostComment.count", 1 do
       post post_comments_path(@post), params: { post_comment: { content: "Child comment body", parent: @comment_root } }
     end

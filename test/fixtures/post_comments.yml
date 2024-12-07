@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  content: MyString
+  content: This is a valid comment
   user: one
   post: one
-  ancestry: nil
+  ancestry: /
 
 two:
-  content: MyString
+  content: This is a valid comment
   user: two
   post: two
   ancestry: one
