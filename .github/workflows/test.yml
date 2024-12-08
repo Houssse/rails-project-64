@@ -53,13 +53,13 @@ jobs:
 
       - name: Ensure database exists
         run: |
-          PGPASSWORD=$DB_PASSWORD psql -h $DB_HOST -p $DB_PORT -U postgres -c "CREATE DATABASE hexlet_app2_test;"
-          PGPASSWORD=$DB_PASSWORD psql -h $DB_HOST -p $DB_PORT -U postgres -c "CREATE USER pguser WITH PASSWORD 'pgpassword';"
-          PGPASSWORD=$DB_PASSWORD psql -h $DB_HOST -p $DB_PORT -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE hexlet_app2_test TO pguser;"
+          PGPASSWORD=$DB_PASSWORD psql -h $DB_HOST -p $DB_PORT -U $DB_USERNAME -c "CREATE DATABASE hexlet_app2_test;"
+          PGPASSWORD=$DB_PASSWORD psql -h $DB_HOST -p $DB_PORT -U $DB_USERNAME -c "CREATE USER pguser WITH PASSWORD 'pgpassword';"
+          PGPASSWORD=$DB_PASSWORD psql -h $DB_HOST -p $DB_PORT -U $DB_USERNAME -c "GRANT ALL PRIVILEGES ON DATABASE hexlet_app2_test TO pguser;"
         env:
           DB_HOST: localhost
           DB_PORT: 5432
-          DB_USERNAME: postgres
+          DB_USERNAME: pguser
           DB_PASSWORD: pgpassword
 
       - name: Prepare test database
