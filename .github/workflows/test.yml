@@ -1,4 +1,4 @@
-name: Test
+name: Rails Tests
 
 on:
   push:
@@ -14,22 +14,22 @@ jobs:
 
     services:
       postgres:
-        image: postgres:15
+        image: postgres:13
         ports:
-          - 5432:5432
+          - "5432:5432"
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: test_db
         options: >-
-          --health-cmd="pg_isready -U pguser -h localhost"
+          --health-cmd="pg_isready -U postgres"
           --health-interval=10s
           --health-timeout=5s
           --health-retries=5
-        env:
-          POSTGRES_USER: pguser
-          POSTGRES_PASSWORD: pgpassword
-          POSTGRES_DB: hexlet_app2_test
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -42,40 +42,28 @@ jobs:
           gem install bundler
           bundle install
 
-      - name: Test database connection
-        run: |
-          pg_isready -h $DB_HOST -p $DB_PORT -U $DB_USERNAME
+      - name: Set environment variables
+        run: echo "DB_HOST=127.0.0.1" >> $GITHUB_ENV
         env:
-          DB_HOST: localhost
-          DB_PORT: 5432
-          DB_USERNAME: pguser
-          DB_PASSWORD: pgpassword
+          GITHUB_ACTIONS: true
 
-      - name: Ensure database exists
-        run: |
-          PGPASSWORD=$DB_PASSWORD psql -h $DB_HOST -p $DB_PORT -U $DB_USERNAME -c "CREATE DATABASE hexlet_app2_test;"
-          PGPASSWORD=$DB_PASSWORD psql -h $DB_HOST -p $DB_PORT -U $DB_USERNAME -c "CREATE USER pguser WITH PASSWORD 'pgpassword';"
-          PGPASSWORD=$DB_PASSWORD psql -h $DB_HOST -p $DB_PORT -U $DB_USERNAME -c "GRANT ALL PRIVILEGES ON DATABASE hexlet_app2_test TO pguser;"
-        env:
-          DB_HOST: localhost
-          DB_PORT: 5432
-          DB_USERNAME: pguser
-          DB_PASSWORD: pgpassword
-
-      - name: Prepare test database
-        run: make prepare_test_db
+      - name: Set up database
         env:
           RAILS_ENV: test
-          DB_HOST: localhost
+          DB_USERNAME: postgres
+          DB_PASSWORD: password
+          DB_HOST: 127.0.0.1
           DB_PORT: 5432
-          DB_USERNAME: pguser
-          DB_PASSWORD: pgpassword
+        run: |
+          bin/rails db:create
+          bin/rails db:schema:load
 
       - name: Run tests
-        run: make test
         env:
           RAILS_ENV: test
-          DB_HOST: localhost
+          DB_USERNAME: postgres
+          DB_PASSWORD: password
+          DB_HOST: 127.0.0.1
           DB_PORT: 5432
-          DB_USERNAME: pguser
-          DB_PASSWORD: pgpassword
+        run: |
+          make test
