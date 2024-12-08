@@ -67,5 +67,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "minitest-power_assert"
-  gem 'sqlite3'
+  gem "sqlite3"
 end
