@@ -5,9 +5,8 @@ default: &default
 
 development:
   <<: *default
-  database: hexlet_app2_development
-  username: pguser
-  password: pgpassword
+  adapter: sqlite3
+  database: db/test.sqlite3
 
 test:
   <<: *default
