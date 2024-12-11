@@ -39,4 +39,5 @@
 
 /node_modules
 
-/db.test.sqlite3
+/db/*.sqlite3
+/db/*.sqlite3-*
