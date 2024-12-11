@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, only: [ :sessions, :registrations ]
 
   resources :posts do
     resources :comments, only: [ :create ]
