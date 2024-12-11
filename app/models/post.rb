@@ -7,5 +7,4 @@ class Post < ApplicationRecord
 
   validates :title, length: { minimum: 5, maximum: 255 }, presence: true
   validates :body, length: { minimum: 200, maximum: 4000 }, presence: true
-  validates :category_id, presence: true
 end
