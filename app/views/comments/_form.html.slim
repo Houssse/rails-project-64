@@ -1,4 +1,4 @@
-= form_with model: PostComment.new,
+= simple_form_for PostComment.new,
   url: post_comments_path(@post), local: true do |f|
   .form-group
     = f.text_area :content, rows: 3,
