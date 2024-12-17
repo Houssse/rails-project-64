@@ -24,10 +24,10 @@ class PostsController < ApplicationController
     @categories = Category.all
 
     if @post.save
-      flash[:notice] = 'Пост опубликован'
+      flash[:notice] = t('flash.notice.post_created')
       redirect_to post_path(@post)
     else
-      flash[:alert] = 'Не удалось создать пост. Проверьте введенные данные'
+      flash[:alert] = t('flash.alert.post_created')
       render :new, status: :unprocessable_entity
     end
   end

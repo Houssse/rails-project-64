@@ -1,0 +1,7 @@
+ru:
+  flash:
+    notice:
+      comment_created: "Комментарий опубликован"
+      post_created: "Пост опубликован"
+    alert:
+      post_created: "Не удалось создать пост. Проверьте введенные данные"

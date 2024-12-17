@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-      flash[:notice] = 'Комментарий опубликован'
+      flash[:notice] = t('flash.notice.comment_created')
     else
       flash[:alert] = @comment.errors.full_messages.last
     end

@@ -1,10 +1,9 @@
-h1 Новый пост
+= content_tag :h1, t('post.new.title')
 
-= form_with model: @post, local: true, class: 'simple_form new_post' do |f|
+= simple_form_for @post, local: true, class: 'simple_form new_post' do |f|
 
   .form-group.string.required.post_title
-    = f.label :title, 'Заголовок'
-    abbr(title='не может быть пустым') *
+    = f.label :title
     = f.text_field :title,
      class: "form-control string required #{"is-invalid" \
      if @post.errors[:title].any?}"
@@ -12,26 +11,23 @@ h1 Новый пост
       .text-danger
         = @post.errors[:title].join(' ')
     - else
-      small.form-text.text-muted 5-255 символов
+    = content_tag :small, t('post.hints.title'), class: 'text-muted'
 
   .form-group.select.required.post_category
-    = f.label :category_id, 'Категория', class: 'mt-3'
-    abbr(title='не может быть пустым') *
+    = f.label :category_id, class: 'mt-3'
     = f.select :category_id,
       options_for_select(@categories.map { |c| [ c.name, c.id ] },
        selected: ''),
-      { include_blank: 'Выберите категорию' },
+      { include_blank: true },
         class: "form-control select required #{"is-invalid" \
         if @post.errors[:category_id].any?}"
     - if @post.errors[:category_id].any?
       .text-danger
         = @post.errors[:category_id].join(' ')
     - else
-      small.form-text.text-muted Выберите категорию
 
   .form-group.text.required.post_body
-    = f.label :body, 'Содержание', class: 'mt-3'
-    abbr(title='не может быть пустым') *
+    = f.label :body, class: 'mt-3'
     = f.text_area :body, rows: 10,
      class: "form-control text required #{"is-invalid" \
      if @post.errors[:body].any?}"
@@ -39,6 +35,6 @@ h1 Новый пост
       .text-danger
         = @post.errors[:body].join(' ')
     - else
-      small.form-text.text-muted От 200 до 4000 символов
+      = content_tag :small, t('post.hints.body'), class: 'text-muted'
 
-  = f.submit 'Опубликовать', class: 'btn btn-primary mt-3'
+  = f.button :submit, class: 'btn btn-primary mt-3'

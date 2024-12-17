@@ -1,4 +1,4 @@
-h1 Коллективный блог
+= content_tag(:h1, t('post.title'))
 .row
   .col-md-12
     - @posts.each do |post|
@@ -13,9 +13,9 @@ h1 Коллективный блог
               'justify-content-between', 'align-items-center' ].join(' ')
             .post-info.d-flex.align-items-center
               i.bi.bi-clock.me-2
-              = "#{distance_of_time_in_words(post.created_at, Time.now)} назад"
+              = "#{distance_of_time_in_words(post.created_at, Time.now)}"
               i.bi.bi-person.ms-2
               = post.creator.email
             .likes-section.d-flex.align-items-center
               i.bi.bi-heart.me-2
-              = " Понравилось: #{ post.likes_count }"
+              = "#{ t('post.like') } #{ post.likes_count }"

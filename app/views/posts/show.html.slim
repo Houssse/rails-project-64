@@ -1,6 +1,6 @@
 ol.breadcrumb
   li.breadcrumb-item
-    a = link_to 'Все посты', root_path
+    a = link_to t('post.links.all_posts'), root_path
   li.breadcrumb-item.active
     = @post.category.name
 
@@ -18,13 +18,13 @@ ol.breadcrumb
             = @post.creator.email
         likes-section
           span.me-2
-            = "#{distance_of_time_in_words(@post.created_at, Time.now)} назад"
+            = "#{distance_of_time_in_words(@post.created_at, Time.now)}"
       #likes-section.d-flex.align-items-center.justify-content-start
         span.me-2 = @post.likes.count
         = render 'likes/like', post: @post, like: @like
 
 .div.lead.mt-3 id="comment-section"
-  span Комментарии
+  = content_tag :span, t('post.all_comments')
   - if user_signed_in?
     = render 'comments/form', parent_id: nil
   - @post.comments.roots.each do |comment|
