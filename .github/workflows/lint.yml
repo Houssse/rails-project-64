@@ -4,28 +4,25 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   lint:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.2.2
-          bundler-cache: true
+    - name: Install dependencies
+      run: bundle install
 
-      - name: Install dependencies
-        run: |
-          gem install bundler
-          bundle install
+    - name: Install Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.2.2'
 
-      - name: Run lint from Makefile
-        run: make lint
+    - name: Run slim-lint
+      run: bundle exec slim-lint app/views
+
+    - name: Run Rubocop
+      run: bundle exec rubocop

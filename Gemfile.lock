@@ -246,16 +246,6 @@ GEM
       parser (>= 3.3.1.0)
     rubocop-capybara (2.21.0)
       rubocop (~> 1.41)
-    rubocop-discourse (3.9.0)
-      activesupport (>= 6.1)
-      rubocop (>= 1.59.0)
-      rubocop-capybara (>= 2.0.0)
-      rubocop-factory_bot (>= 2.0.0)
-      rubocop-rails (>= 2.25.0)
-      rubocop-rspec (>= 3.0.1)
-      rubocop-rspec_rails (>= 2.30.0)
-    rubocop-factory_bot (2.26.1)
-      rubocop (~> 1.61)
     rubocop-minitest (0.36.0)
       rubocop (>= 1.61, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
@@ -274,11 +264,6 @@ GEM
       rubocop-rails
     rubocop-rake (0.6.0)
       rubocop (~> 1.0)
-    rubocop-rspec (3.3.0)
-      rubocop (~> 1.61)
-    rubocop-rspec_rails (2.30.0)
-      rubocop (~> 1.61)
-      rubocop-rspec (~> 3, >= 3.0.1)
     ruby-progressbar (1.13.0)
     rubyzip (2.3.2)
     securerandom (0.4.0)
@@ -384,7 +369,6 @@ DEPENDENCIES
   rails (~> 7.2.2)
   rubocop
   rubocop-capybara
-  rubocop-discourse
   rubocop-minitest
   rubocop-performance
   rubocop-rails
