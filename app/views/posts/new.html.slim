@@ -1,44 +1,44 @@
 h1 Новый пост
 
-= form_with model: @post, local: true, class: "simple_form new_post" do |f|
+= form_with model: @post, local: true, class: 'simple_form new_post' do |f|
 
   .form-group.string.required.post_title
-    = f.label :title, "Заголовок"
-    abbr(title="не может быть пустым") *
+    = f.label :title, 'Заголовок'
+    abbr(title='не может быть пустым') *
     = f.text_field :title,
-     class: "form-control string required #{'is-invalid' \
+     class: "form-control string required #{"is-invalid" \
      if @post.errors[:title].any?}"
     - if @post.errors[:title].any?
       .text-danger
-        = @post.errors[:title].join(" ")
+        = @post.errors[:title].join(' ')
     - else
       small.form-text.text-muted 5-255 символов
 
   .form-group.select.required.post_category
-    = f.label :category_id, "Категория", class: "mt-3"
-    abbr(title="не может быть пустым") *
+    = f.label :category_id, 'Категория', class: 'mt-3'
+    abbr(title='не может быть пустым') *
     = f.select :category_id,
       options_for_select(@categories.map { |c| [ c.name, c.id ] },
-       selected: ""),
-      { include_blank: "Выберите категорию" },
-        class: "form-control select required #{'is-invalid' \
+       selected: ''),
+      { include_blank: 'Выберите категорию' },
+        class: "form-control select required #{"is-invalid" \
         if @post.errors[:category_id].any?}"
     - if @post.errors[:category_id].any?
       .text-danger
-        = @post.errors[:category_id].join(" ")
+        = @post.errors[:category_id].join(' ')
     - else
       small.form-text.text-muted Выберите категорию
 
   .form-group.text.required.post_body
-    = f.label :body, "Содержание", class: "mt-3"
-    abbr(title="не может быть пустым") *
+    = f.label :body, 'Содержание', class: 'mt-3'
+    abbr(title='не может быть пустым') *
     = f.text_area :body, rows: 10,
-     class: "form-control text required #{'is-invalid' \
+     class: "form-control text required #{"is-invalid" \
      if @post.errors[:body].any?}"
     - if @post.errors[:body].any?
       .text-danger
-        = @post.errors[:body].join(" ")
+        = @post.errors[:body].join(' ')
     - else
       small.form-text.text-muted От 200 до 4000 символов
 
-  = f.submit "Опубликовать", class: "btn btn-primary mt-3"
+  = f.submit 'Опубликовать', class: 'btn btn-primary mt-3'

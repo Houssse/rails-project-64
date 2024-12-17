@@ -4,7 +4,16 @@ inherit_from: .rubocop_todo.yml
 inherit_gem: { rubocop-rails-omakase: rubocop.yml }
 
 # Overwrite or add rules to create your own house style
-#
-# # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
+
+# Use single quotes for strings without interpolation
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+  Enabled: true
+
+# Ensure no spaces inside percent literal delimiters
+Layout/SpaceInsidePercentLiteralDelimiters:
+  Enabled: true
+
+# Example: Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
 # Layout/SpaceInsideArrayLiteralBrackets:
 #   Enabled: false

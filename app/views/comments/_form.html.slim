@@ -2,8 +2,8 @@
   url: post_comments_path(@post), local: true do |f|
   .form-group
     = f.text_area :content, rows: 3,
-      class: "form-control"
+      class: 'form-control'
 
   = f.hidden_field :parent_id, value: parent_id if defined?(parent_id)
 
-  = f.submit "Оставить комментарий", class: "btn btn-primary mt-2 mb-2"
+  = f.submit 'Оставить комментарий', class: 'btn btn-primary mt-2 mb-2'

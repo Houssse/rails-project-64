@@ -1,6 +1,6 @@
-ENV["RAILS_ENV"] ||= "test"
-require_relative "../config/environment"
-require "rails/test_help"
+ENV['RAILS_ENV'] ||= 'test'
+require_relative '../config/environment'
+require 'rails/test_help'
 
 module ActiveSupport
   class TestCase
@@ -12,7 +12,7 @@ module ActiveSupport
       sign_in @user_one
       @category = categories(:one)
       @post = posts(:one)
-      @comment = PostComment.new(content: "This is a valid comment", user: users(:one), post: posts(:one))
+      @comment = PostComment.new(content: 'This is a valid comment', user: users(:one), post: posts(:one))
       @comment_root = post_comments(:one)
       @comment_child = post_comments(:two)
       @like = post_likes(:one)
