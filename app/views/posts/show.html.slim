@@ -18,7 +18,7 @@ ol.breadcrumb
             = @post.creator.email
         likes-section
           span.me-2
-            = "#{distance_of_time_in_words(@post.created_at, Time.now)}"
+            = distance_of_time_in_words(@post.created_at, Time.current)
       #likes-section.d-flex.align-items-center.justify-content-start
         span.me-2 = @post.likes.count
         = render 'likes/like', post: @post, like: @like

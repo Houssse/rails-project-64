@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [ :create, :new ]
+  before_action :authenticate_user!, only: %i[create new]
 
   def index
     @posts = Post.includes(:creator)
@@ -7,11 +9,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    if current_user
-      @like = current_user.post_likes.find_by(post_id: @post.id)
-    else
-      @like = nil
-    end
+    @like = current_user&.post_likes&.find_by(post_id: @post.id)
   end
 
   def new
@@ -25,10 +23,10 @@ class PostsController < ApplicationController
 
     if @post.save
       flash[:notice] = t('flash.notice.post_created')
-      redirect_to post_path(@post)
+      redirect_to(post_path(@post))
     else
       flash[:alert] = t('flash.alert.post_created')
-      render :new, status: :unprocessable_entity
+      render(:new, status: :unprocessable_entity)
     end
   end
 

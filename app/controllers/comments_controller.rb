@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
-  before_action :authenticate_user!, only: [ :create ]
+  before_action :authenticate_user!, only: [:create]
 
   def create
     @post = Post.find(params[:post_id])
@@ -12,7 +14,7 @@ class CommentsController < ApplicationController
       flash[:alert] = @comment.errors.full_messages.last
     end
 
-    redirect_to @post
+    redirect_to(@post)
   end
 
   private

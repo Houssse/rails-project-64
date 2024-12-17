@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
@@ -9,7 +11,7 @@ module ActiveSupport
     def setup
       @user_one = users(:one)
       @user_two = users(:two)
-      sign_in @user_one
+      sign_in(@user_one)
       @category = categories(:one)
       @post = posts(:one)
       @comment = PostComment.new(content: 'This is a valid comment', user: users(:one), post: posts(:one))

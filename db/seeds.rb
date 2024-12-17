@@ -1,8 +1,10 @@
-puts "Очистка базы данных"
+# frozen_string_literal: true
+
+Rails.logger.debug 'Очистка базы данных'
 
 Rake::Task['db:clean'].invoke
 
-puts "Заполнение базы данных..."
+Rails.logger.debug 'Заполнение базы данных...'
 
 5.times do
   user = User.create!(email: Faker::Internet.email, password: 'password')
@@ -10,7 +12,8 @@ puts "Заполнение базы данных..."
   category_name = Faker::Commerce.department(max: 1)
   category = Category.find_or_create_by!(name: category_name)
 
-  post = Post.create!(title: Faker::Lorem.sentence, body: Faker::Lorem.sentence(word_count: 250), creator: user, category: category)
+  post = Post.create!(title: Faker::Lorem.sentence, body: Faker::Lorem.sentence(word_count: 250), creator: user,
+                      category: category)
 
   rand(1..10).times { PostLike.create(post: post, user: User.all.sample) }
 
@@ -20,4 +23,4 @@ puts "Заполнение базы данных..."
   end
 end
 
-puts "Готово"
+Rails.logger.debug 'Готово'

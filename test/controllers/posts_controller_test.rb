@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
@@ -12,7 +14,9 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test 'create post' do
     assert_difference 'Post.count', 1 do
-      post posts_path, params: { post: { title: 'New Post', body: Faker::Lorem.paragraph_by_chars(number: 255), category_id: @category.id } }
+      post posts_path,
+           params: { post: { title: 'New Post', body: Faker::Lorem.paragraph_by_chars(number: 255),
+                             category_id: @category.id } }
     end
 
     assert_redirected_to post_path(Post.last)

@@ -8,14 +8,14 @@
             = link_to post.title, post, class: 'link-dark text-decoration-none'
           .card-text.mb-2
             = post.body.truncate(300)
-          = content_tag :div, class: [ \
-              'text-right', 'small', 'text-muted', 'mt-auto', 'd-flex',
-              'justify-content-between', 'align-items-center' ].join(' ')
+          - classes = %w[text-right small text-muted mt-auto d-flex \
+            justify-content-between align-items-center]
+          = content_tag :div, class: classes.join(' ')
             .post-info.d-flex.align-items-center
               i.bi.bi-clock.me-2
-              = "#{distance_of_time_in_words(post.created_at, Time.now)}"
+              = distance_of_time_in_words(post.created_at, Time.current)
               i.bi.bi-person.ms-2
               = post.creator.email
             .likes-section.d-flex.align-items-center
               i.bi.bi-heart.me-2
-              = "#{ t('post.like') } #{ post.likes_count }"
+              = "#{t('post.like')} #{post.likes_count}"

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class CommentsControllerTest < ActionDispatch::IntegrationTest
@@ -8,6 +10,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to post_path(@post)
     follow_redirect!
+
     assert_select 'p', 'Comment body'
   end
 
@@ -18,6 +21,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to post_path(@post)
     follow_redirect!
+
     assert_select 'p', 'Child comment body'
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
@@ -36,12 +38,12 @@ gem 'bootsnap', require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
-gem 'slim-rails'
-gem 'simple_form'
+gem 'ancestry'
 gem 'devise', '~> 4.9'
 gem 'devise-i18n'
 gem 'faker'
-gem 'ancestry'
+gem 'simple_form'
+gem 'slim-rails'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -51,9 +53,12 @@ group :development, :test do
   gem 'brakeman', require: false
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
-  gem 'rubocop-rails-omakase', require: false
-
+  gem 'rubocop', require: false
+  gem 'rubocop-minitest', require: false
+  gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
+  gem 'rubocop-rails-omakase', require: false
+  gem 'rubocop-rake', require: false
   gem 'slim_lint', require: false
 end
 
@@ -65,7 +70,7 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
-  gem 'selenium-webdriver'
   gem 'minitest-power_assert'
+  gem 'selenium-webdriver'
   gem 'sqlite3'
 end

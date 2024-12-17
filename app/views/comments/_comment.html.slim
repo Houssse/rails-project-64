@@ -5,8 +5,8 @@
         div class="card-header border-0"
           a class="me-2" #
           span class="me-2" = comment.user.email
-          span class="fs-6 text-muted" = \
-            I18n.l(comment.created_at, format: :custom)
+          span class="fs-6 text-muted" = I18n.l(comment.created_at,
+           format: :custom)
 
         div class="card-body border-0"
           p class="card-text" = comment.content

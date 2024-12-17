@@ -5,31 +5,29 @@
   .form-group.string.required.post_title
     = f.label :title
     = f.text_field :title,
-     class: "form-control string required #{"is-invalid" \
+     class: "form-control string required #{'is-invalid' \
      if @post.errors[:title].any?}"
     - if @post.errors[:title].any?
       .text-danger
         = @post.errors[:title].join(' ')
-    - else
     = content_tag :small, t('post.hints.title'), class: 'text-muted'
 
   .form-group.select.required.post_category
     = f.label :category_id, class: 'mt-3'
     = f.select :category_id,
-      options_for_select(@categories.map { |c| [ c.name, c.id ] },
+      options_for_select(@categories.map { |c| [c.name, c.id] },
        selected: ''),
       { include_blank: true },
-        class: "form-control select required #{"is-invalid" \
+        class: "form-control select required #{'is-invalid' \
         if @post.errors[:category_id].any?}"
     - if @post.errors[:category_id].any?
       .text-danger
         = @post.errors[:category_id].join(' ')
-    - else
 
   .form-group.text.required.post_body
     = f.label :body, class: 'mt-3'
     = f.text_area :body, rows: 10,
-     class: "form-control text required #{"is-invalid" \
+     class: "form-control text required #{'is-invalid' \
      if @post.errors[:body].any?}"
     - if @post.errors[:body].any?
       .text-danger
