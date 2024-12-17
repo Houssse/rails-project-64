@@ -6,5 +6,5 @@ Rails.application.routes.draw do
     resources :likes, only: [ :create, :destroy ]
   end
 
-  root "home#index"
+  root "posts#index"
 end

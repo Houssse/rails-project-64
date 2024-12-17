@@ -1,6 +1,10 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [ :create, :new ]
 
+  def index
+    @posts = Post.includes(:creator)
+  end
+
   def show
     @post = Post.find(params[:id])
     if current_user
