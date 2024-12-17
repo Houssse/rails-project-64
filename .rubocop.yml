@@ -3,6 +3,8 @@ require:
   - rubocop-performance
   - rubocop-rails
   - rubocop-rake
+  - rubocop-capybara
+  - slim_lint
 
 AllCops:
   NewCops: enable
