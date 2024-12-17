@@ -10,10 +10,19 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "destroy like" do
-    @post.likes.create(user: @user)
+    @post.likes.create
 
     delete post_like_path(@post, @like)
 
     assert_equal 0, @post.likes.count
+  end
+
+  test "destroyed by another user" do
+    @post.likes.create
+    sign_in @user_two
+
+    delete post_like_path(@post, @like)
+
+    assert_equal 1, @post.likes.count
   end
 end

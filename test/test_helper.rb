@@ -7,8 +7,9 @@ module ActiveSupport
     include Devise::Test::IntegrationHelpers
 
     def setup
-      user = users(:one)
-      sign_in user
+      @user_one = users(:one)
+      @user_two = users(:two)
+      sign_in @user_one
       @category = categories(:one)
       @post = posts(:one)
       @comment = PostComment.new(content: "This is a valid comment", user: users(:one), post: posts(:one))
