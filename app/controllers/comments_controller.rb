@@ -3,16 +3,16 @@ class CommentsController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-    @comment = @post.comments.new(comment_params)
+    @comment = @post.comments.build(comment_params)
     @comment.user = current_user
 
     if @comment.save
       flash[:notice] = "Комментарий опубликован"
-      redirect_to post_path(@post)
     else
       flash[:alert] = @comment.errors.full_messages.last
-      render "posts/show", status: :unprocessable_entity
     end
+
+    redirect_to @post
   end
 
   private
