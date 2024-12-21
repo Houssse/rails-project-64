@@ -11,12 +11,14 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to post_path(@post)
   end
 
-  test 'destroy like' do
-    @post.likes.create
+  test 'delete post like' do
+    delete post_like_url(posts(:one).id, post_likes(:one).id)
 
-    delete post_like_path(@post, @like)
+    assert_response :redirect
 
-    assert_equal 0, @post.likes.count
+    deleted_post_like = PostLike.find_by(id: post_likes(:one).id)
+
+    assert_nil(deleted_post_like, 'Post like should be deleted')
   end
 
   test 'destroyed by another user' do
